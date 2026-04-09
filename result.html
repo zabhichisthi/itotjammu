@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Result | GOVT. ITOT JAMMU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6f9;
+}
+
+/* HEADER */
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px 20px;
+}
+
+header h1{
+  margin:0;
+  font-size:22px;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* CONTAINER */
+.container{
+  max-width:900px;
+  margin:30px auto;
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.container h2{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:20px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.search-box input,
+.search-box select{
+  padding:10px;
+  border:1px solid #cbd5e1;
+  border-radius:5px;
+  font-size:14px;
+}
+
+.search-box button{
+  grid-column:1 / -1;
+  padding:12px;
+  background:#1e3a8a;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.search-box button:hover{
+  background:#2563eb;
+}
+
+/* RESULT BOX */
+#resultBox{
+  display:none;
+  margin-top:30px;
+  border-top:1px solid #e5e7eb;
+  padding-top:20px;
+}
+
+.result-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.result-row div{
+  font-size:14px;
+  color:#374151;
+}
+
+/* BUTTONS */
+.actions{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+}
+
+.actions a{
+  flex:1;
+  text-align:center;
+  padding:10px;
+  background:#1e3a8a;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .search-box,
+  .result-row{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+  <h1 align="center">GOVT. ITOT JAMMU</h1>
+</header>
+
+<div class="container">
+  <h2>Examination Result</h2>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input type="text" id="regNo" placeholder="Registration / Roll Number">
+    <select id="examSession">
+      <option value="">Select Session</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+    </select>
+    <button onclick="showResult()">View Result</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="resultBox">
+
+    <div class="result-row">
+      <div><strong>Name:</strong></div>
+      <div>Student Name</div>
+    </div>
+
+    <div class="result-row">
+      <div><strong>Trade:</strong></div>
+      <div>CITS - CSA</div>
+    </div>
+
+    <div class="result-row">
+      <div><strong>Semester:</strong></div>
+      <div>Final</div>
+    </div>
+
+    <div class="result-row">
+      <div><strong>Status:</strong></div>
+      <div>PASS</div>
+    </div>
+
+    <div class="result-row">
+      <div><strong>Result Date:</strong></div>
+      <div>15-06-2025</div>
+    </div>
+
+    <div class="actions">
+      <a href="results/sample-result.pdf" target="_blank">View PDF</a>
+      <a href="results/sample-result.pdf" download>Download PDF</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showResult(){
+  const reg = document.getElementById("regNo").value;
+  const session = document.getElementById("examSession").value;
+
+  if(reg === "" || session === ""){
+    alert("Please enter Registration/Roll Number and select Session");
+    return;
+  }
+
+  document.getElementById("resultBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>

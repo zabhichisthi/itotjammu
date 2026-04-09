@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notifications | GOVT. ITOT JAMMU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6f9;
+}
+
+/* HEADER */
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px 20px;
+}
+
+header h1{
+  margin:0;
+  font-size:22px;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1000px;
+  margin:30px auto;
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.container h2{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:20px;
+}
+
+/* MARQUEE */
+.marquee-box{
+  background:#e0e7ff;
+  padding:10px;
+  border-left:5px solid #1e3a8a;
+  margin-bottom:25px;
+}
+
+.marquee-box marquee{
+  font-size:14px;
+  color:#1e3a8a;
+  font-weight:bold;
+}
+
+/* NOTICE LIST */
+.notice{
+  display:grid;
+  grid-template-columns:120px 1fr 120px;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid #e5e7eb;
+  align-items:center;
+}
+
+.notice:last-child{
+  border-bottom:none;
+}
+
+.date{
+  background:#1e3a8a;
+  color:white;
+  text-align:center;
+  padding:10px;
+  border-radius:6px;
+  font-size:13px;
+}
+
+.date span{
+  display:block;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.notice-text{
+  font-size:14px;
+  color:#374151;
+}
+
+.notice-text strong{
+  color:#1e3a8a;
+}
+
+.notice a{
+  text-decoration:none;
+  color:#1e3a8a;
+  font-size:14px;
+  font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .notice{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .date{
+    width:120px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+  <h1 align="center">GOVT. ITOT JAMMU</h1>
+</header>
+
+<div class="container">
+  <h2>Notifications / Notices</h2>
+
+  <!-- IMPORTANT MARQUEE -->
+  <div class="marquee-box">
+    <marquee behavior="scroll" direction="left">
+      📢 Admission for CITS courses is open • Examination forms last date extended • Check latest results •
+    </marquee>
+  </div>
+
+  <!-- NOTICE LIST -->
+
+<div class="notice">
+  <div class="date">
+    <span>15</span>
+    Jun 2025
+  </div>
+  <div class="notice-text">
+    <strong>Examination Schedule Notice:</strong>
+    Final examination schedule for CITS trainees.
+  </div>
+  <a href="Exam Schedule.pdf" target="_blank">View</a>
+</div>
+
+<div class="notice">
+  <div class="date">
+    <span>10</span>
+    Jun 2025
+  </div>
+  <div class="notice-text">
+    <strong>Admission Notice:</strong>
+    Online admission form available for new session.
+  </div>
+  <a href="citsaddmissionnotice.pdf" target="_blank">View</a>
+</div>
+
+<div class="notice">
+  <div class="date">
+    <span>10</span>
+    Aug 2025
+  </div>
+  <div class="notice-text">
+    <strong>Prospectus:</strong>
+    Online prospectus available for new session.
+  </div>
+  <a href="Prospectus_CITS.pdf" target="_blank">View</a>
+</div>
+
+<div class="notice">
+  <div class="date">
+    <span>05</span>
+    Jun 2025
+  </div>
+  <div class="notice-text">
+    <strong>Result Declaration:</strong>
+    Results of CITS not available yet.
+  </div>
+  <a href="notice.pdf" target="_blank">View</a>
+</div>
+</div>
+</body>
+</html>

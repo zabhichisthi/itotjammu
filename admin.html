@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel – GOVT. ITOT JAMMU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  margin:0;
+  background:#f1f5f9;
+}
+
+/* HEADER (SAFE, CLICKABLE) */
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  z-index:10;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* LOGIN AREA */
+#loginBox{
+  min-height:calc(100vh - 80px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(120deg,#1e3a8a,#2563eb);
+  position:relative;
+  z-index:20;
+}
+
+.login-card{
+  background:white;
+  padding:30px;
+  width:360px;
+  border-radius:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.login-card h2{
+  text-align:center;
+  color:#1e3a8a;
+}
+
+.login-card input{
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border:1px solid #cbd5e1;
+  border-radius:5px;
+}
+
+.login-card button{
+  width:100%;
+  padding:12px;
+  background:#1e3a8a;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* DASHBOARD */
+#dashboard{
+  display:none;
+}
+
+.container{
+  padding:20px;
+  max-width:1200px;
+  margin:auto;
+}
+
+h2{
+  color:#1e3a8a;
+  margin-top:30px;
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+  background:white;
+}
+
+table th, table td{
+  border:1px solid #cbd5e1;
+  padding:8px;
+  font-size:13px;
+}
+
+table th{
+  background:#e0e7ff;
+}
+
+.empty{
+  color:#6b7280;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<header>
+  <a href="index.html">← Back to Home</a>
+  <strong align="center">GOVT. ITOT JAMMU</strong>
+</header>
+
+<!-- LOGIN -->
+<div id="loginBox">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <input type="text" id="user" placeholder="Username">
+    <input type="password" id="pass" placeholder="Password">
+    <button id="loginBtn">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+<header>
+  <strong>Admin Dashboard</strong>
+  <button onclick="logout()" style="background:#ef4444;color:white;border:none;padding:8px 14px;border-radius:5px;cursor:pointer;">
+    Logout
+  </button>
+</header>
+
+<div class="container">
+
+  <h2>Admission Forms</h2>
+  <div id="admissionData"></div>
+
+  <h2>Examination Forms</h2>
+  <div id="examData"></div>
+
+</div>
+</div>
+
+<!-- FIREBASE + LOGIC -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+/* 🔥 YOUR FIREBASE CONFIG */
+const firebaseConfig = {
+  apiKey: "AIzaSy.....",
+  authDomain: "govtitotjammu.firebaseapp.com",
+  databaseURL: "https://govtitotjammu-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "govtitotjammu",
+  storageBucket: "govtitotjammu.appspot.com",
+  messagingSenderId: "836880995224",
+  appId: "1:836880995224:web:78a4112e61fd224fe511ed"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* LOGIN */
+document.getElementById("loginBtn").addEventListener("click", ()=>{
+  if(user.value==="admin" && pass.value==="admin123"){
+    loginBox.style.display="none";
+    dashboard.style.display="block";
+    loadAdmissions();
+    loadExaminations();
+  }else{
+    alert("Invalid Login");
+  }
+});
+
+window.logout = function(){
+  location.reload();
+}
+
+/* LOAD ADMISSIONS */
+function loadAdmissions(){
+  const box = document.getElementById("admissionData");
+  onValue(ref(db,"admissions"), snap=>{
+    if(!snap.exists()){
+      box.innerHTML="<p class='empty'>No admissions found</p>";
+      return;
+    }
+    let t="<table><tr><th>Name</th><th>Father</th><th>Mobile</th><th>Trade</th><th>Date</th></tr>";
+    snap.forEach(c=>{
+      const d=c.val();
+      t+=`<tr>
+        <td>${d.name||""}</td>
+        <td>${d.father||""}</td>
+        <td>${d.mobile||""}</td>
+        <td>${d.trade||""}</td>
+        <td>${d.time||""}</td>
+      </tr>`;
+    });
+    box.innerHTML=t+"</table>";
+  });
+}
+
+/* LOAD EXAMS */
+function loadExaminations(){
+  const box = document.getElementById("examData");
+  onValue(ref(db,"examinations"), snap=>{
+    if(!snap.exists()){
+      box.innerHTML="<p class='empty'>No exams found</p>";
+      return;
+    }
+    let t="<table><tr><th>Name</th><th>Father</th><th>Reg No</th><th>Trade</th><th>Semester</th><th>Type</th><th>Date</th></tr>";
+    snap.forEach(c=>{
+      const d=c.val();
+      t+=`<tr>
+        <td>${d.name||""}</td>
+        <td>${d.father||""}</td>
+        <td>${d.registration||""}</td>
+        <td>${d.trade||""}</td>
+        <td>${d.semester||""}</td>
+        <td>${d.examType||""}</td>
+        <td>${d.time||""}</td>
+      </tr>`;
+    });
+    box.innerHTML=t+"</table>";
+  });
+}
+</script>
+
+</body>
+</html>

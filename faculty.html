@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Faculty & Staff | GOVT. ITOT JAMMU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6f9;
+}
+
+/* HEADER */
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px 20px;
+}
+
+header h1{
+  margin:0;
+  font-size:22px;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:30px auto;
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.container h2{
+  text-align:center;
+  color:#1e3a8a;
+  margin-bottom:25px;
+}
+
+/* SECTION TITLE */
+.section-title{
+  margin-top:30px;
+  margin-bottom:15px;
+  font-size:20px;
+  color:#1e3a8a;
+  border-left:5px solid #1e3a8a;
+  padding-left:10px;
+}
+
+/* GRID */
+.staff-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.staff-card{
+  background:#fafafa;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.staff-card:hover{
+  box-shadow:0 8px 18px rgba(0,0,0,0.1);
+  transform:translateY(-4px);
+}
+
+.staff-card h3{
+  margin:0 0 5px 0;
+  color:#1e3a8a;
+  font-size:18px;
+}
+
+.staff-card p{
+  margin:4px 0;
+  font-size:14px;
+  color:#374151;
+}
+
+.staff-card span{
+  font-size:13px;
+  color:#6b7280;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .container{
+    margin:15px;
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+  <h1 align="center">GOVT. ITOT JAMMU</h1>
+</header>
+
+<div class="container">
+  <h2>Faculty & Staff</h2>
+
+  <!-- FACULTY SECTION -->
+  <div class="section-title">Teaching Faculty</div>
+
+  <div class="staff-grid">
+
+    <div class="staff-card">
+      <h3>Shri Abdul Rashid Sheikh</h3>
+      <p><strong>Designation:</strong> Principal</p>
+      <span>Overall academic and administrative head</span>
+    </div>
+
+    <div class="staff-card">
+      <h3>Shri Rakesh Singh</h3>
+      <p><strong>Designation:</strong> Senior Instructor (CSA)</p>
+      <span>Computer Software Application</span>
+    </div>
+
+    <div class="staff-card">
+      <h3>Shri Tilak Raj</h3>
+      <p><strong>Designation:</strong> Instructor (Electrician)</p>
+      <span>Electrical Trade</span>
+    </div>
+  </div>
+
+  <!-- ADMIN STAFF -->
+  <div class="section-title">Administrative Staff</div>
+
+  <div class="staff-grid">
+
+    <div class="staff-card">
+      <h3>Shri Karan Singh</h3>
+      <p><strong>Designation:</strong> Supervisor</p>
+      <span>Office administration & records</span>
+    </div>
+
+    <div class="staff-card">
+      <h3>Shri Navneen </h3>
+      <p><strong>Designation:</strong> Clerk</p>
+      <span>Admission & examination records</span>
+    </div>
+
+    <div class="staff-card">
+      <h3>Shri Abhishek </h3>
+      <p><strong>Designation:</strong> Lab Assistant</p>
+      <span>Workshop & lab support</span>
+    </div>
+
+    <div class="staff-card">
+      <h3>Shri Naresh kumar</h3>
+      <p><strong>Designation:</strong> Attendant</p>
+      <span>Institute support services</span>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Examination Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6f9;
+}
+header{
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+}
+header a{
+  color:white;
+  text-decoration:none;
+}
+.container{
+  max-width:900px;
+  margin:30px auto;
+  background:white;
+  padding:25px;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+h2{
+  text-align:center;
+  color:#1e3a8a;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+label{
+  font-size:14px;
+  margin-bottom:4px;
+}
+input, select{
+  padding:10px;
+  border:1px solid #cbd5e1;
+  border-radius:5px;
+}
+.full{ grid-column:1/-1; }
+button{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  background:#1e3a8a;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{ background:#2563eb; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+  <h1 align="center">GOVT. ITOT JAMMU</h1>
+</header>
+
+<div class="container">
+<h2>Examination Application Form</h2>
+
+<form id="examForm">
+
+<div class="form-group full">
+  <label>Examination Type</label>
+  <select id="examType" required>
+    <option value="">Select</option>
+    <option>Regular</option>
+    <option>Private</option>
+    <option>Supplementary</option>
+  </select>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+  <label>Candidate Name</label>
+  <input id="name" required>
+</div>
+
+<div class="form-group">
+  <label>Father's Name</label>
+  <input id="father" required>
+</div>
+
+<div class="form-group">
+  <label>Registration Number</label>
+  <input id="registration" required>
+</div>
+
+<div class="form-group">
+  <label>Roll Number</label>
+  <input id="roll">
+</div>
+
+<div class="form-group">
+  <label>Trade</label>
+  <select id="trade" required>
+    <option value="">Select</option>
+    <option>CITS - CSA</option>
+    <option>CITS - Electrician</option>
+    <option>CITS - Fitter</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>Semester / Year</label>
+  <select id="semester" required>
+    <option value="">Select</option>
+    <option>1st</option>
+    <option>2nd</option>
+    <option>Final</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>Mobile</label>
+  <input id="mobile" required>
+</div>
+
+<div class="form-group">
+  <label>Email</label>
+  <input id="email">
+</div>
+
+<div class="form-group full">
+  <label>Address</label>
+  <input id="address">
+</div>
+
+</div>
+
+<button type="submit">Submit Examination Form</button>
+</form>
+</div>
+
+<!-- 🔥 FIREBASE (SINGLE SCRIPT – NO DUPLICATE) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+/* 🔐 FIREBASE CONFIG */
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_REAL_API_KEY_HERE",
+  authDomain: "govtitotjammu.firebaseapp.com",
+  databaseURL: "https://govtitotjammu-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "govtitotjammu",
+  storageBucket: "govtitotjammu.appspot.com",
+  messagingSenderId: "836880995224",
+  appId: "1:836880995224:web:78a4112e61fd224fe511ed"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const form = document.getElementById("examForm");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const data = {
+    examType: document.getElementById("examType").value,
+    name: document.getElementById("name").value,
+    father: document.getElementById("father").value,
+    registration: document.getElementById("registration").value,
+    roll: document.getElementById("roll").value || "",
+    trade: document.getElementById("trade").value,
+    semester: document.getElementById("semester").value,
+    mobile: document.getElementById("mobile").value,
+    email: document.getElementById("email").value || "",
+    address: document.getElementById("address").value || "",
+    status: "Pending",
+    time: new Date().toLocaleString()
+  };
+
+  console.log("SENDING TO FIREBASE:", data);
+
+  push(ref(db, "examinations"), data)
+    .then(() => {
+      alert("✅ Examination Form Submitted Successfully");
+      form.reset();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("ERROR: " + err.message);
+    });
+});
+</script>
+
+</body>
+</html>
